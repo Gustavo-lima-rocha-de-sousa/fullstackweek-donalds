@@ -12,7 +12,7 @@ const CartSheet = () => {
     <Sheet open={isOpen} onOpenChange={toggleCart}>
             <SheetContent>
     <SheetHeader>
-      <SheetTitle>Are you absolutely sure?</SheetTitle>
+      <SheetTitle>Sacola</SheetTitle>
       <SheetDescription>
         This action cannot be undone. This will permanently delete your account
         and remove your data from our servers.
