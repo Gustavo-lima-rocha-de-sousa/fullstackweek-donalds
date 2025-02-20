@@ -7,6 +7,7 @@ import { useState } from "react";
 
 import { formatCurrency } from "@/app/helpers/format-currency";
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ProductDetailProps {  
   product: Prisma.ProductGetPayload<{include: { 
@@ -34,8 +35,8 @@ const ProductDetail= ({product}:ProductDetailProps) => {
     setQuantity((prev)=> prev + 1);
   }
   return ( 
-    <div className="relative z-50 rounded-t-3xl p-5 mt-[1.5rem] flex flex-auto flex-col">
-      <div className="flex-auto">
+    <div className="relative z-50 rounded-t-3xl p-5 mt-[1.5rem] flex flex-auto flex-col overflow-hidden">
+      <div className="flex-auto overflow-hidden">
                 {/* RESTAURANT */}
           <div className="flex items-center gap-1.5">
           <Image src={product.restaurant.avatarImageUrl} 
@@ -51,7 +52,7 @@ const ProductDetail= ({product}:ProductDetailProps) => {
         <h2 className=" mt-1 text-xl font-semibold">{product.name}</h2>
 
           {/* Price and Quantity */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-3">
           <h3 className="text-xl font-semibold">
           {formatCurrency(product.price)}
           </h3>
@@ -71,7 +72,8 @@ const ProductDetail= ({product}:ProductDetailProps) => {
               </Button>
           </div>
           </div>
-
+        
+        <ScrollArea className="h-full">
           {/* Description */}
           <div className="mt-6 space-y-3">
             <h4 className="font-semibold">Sobre</h4>
@@ -84,8 +86,14 @@ const ProductDetail= ({product}:ProductDetailProps) => {
             <ChefHatIcon size={18}/>
            <h4 className="font-semibold">Ingredientes</h4>
            </div>
-            <p className="text-sm text-muted-foreground">{product.ingredients}</p>
+            <ul className="list-disc px-5 text-muted-foreground">
+              {product.ingredients.map((ingredient) => (
+                <li key={ingredient}>{ingredient}</li>
+              ))}
+              </ul>
             </div>
+        </ScrollArea>
+          
       </div>
             <Button className="w-full rounded-full mt-6">
               Adicionar à sacola   
