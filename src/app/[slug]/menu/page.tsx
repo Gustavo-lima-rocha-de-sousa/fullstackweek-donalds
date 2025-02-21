@@ -10,7 +10,7 @@ interface RestauranteMenuPageProps {
   searchParams: Promise<{ consumptionMethod: string }>;
 }
 const isConsumptionMethod = (consumptionMethod: string) => {
-    return ["DINE_IN", "TAKEAWAY"].includes(consumptionMethod.toUpperCase());
+  return ["DINE_IN", "TAKEAWAY"].includes(consumptionMethod.toUpperCase());
 };
 
 const RestauranteMenuPage = async ({

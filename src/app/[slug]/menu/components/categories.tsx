@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Prisma } from "@prisma/client";
 import { Scrollbar } from "@radix-ui/react-scroll-area";
 import { ClockIcon } from "lucide-react";
@@ -21,16 +21,18 @@ interface RestaurantCategoriesProps {
   }>;
 }
 type MenuCategoriesWithProducts = Prisma.MenuCategoryGetPayload<{
-  include: {products: true}  }>
+  include: { products: true };
+}>;
 const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
-  const [selectedCategory, setSelectedCategory] = useState<MenuCategoriesWithProducts>(restaurant.menuCategories[0]);
+  const [selectedCategory, setSelectedCategory] =
+    useState<MenuCategoriesWithProducts>(restaurant.menuCategories[0]);
   const handleCategoryClick = (category: MenuCategoriesWithProducts) => {
-    setSelectedCategory(category)
+    setSelectedCategory(category);
   };
-  
+
   const getCategoryButtonVariant = (category: MenuCategoriesWithProducts) => {
     return selectedCategory.id === category.id ? "default" : "secondary";
-  }
+  };
   return (
     <div className="relative z-50 mt-[-1.5rem] rounded-t-3xl bg-white">
       <div className="p-5">
@@ -54,18 +56,21 @@ const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
       <ScrollArea className="w-full">
         <div className="flex w-max space-x-4 p-4">
           {restaurant.menuCategories.map((category) => (
-            <Button onClick={() => handleCategoryClick(category)} key={category.id} variant={
-              getCategoryButtonVariant(category)
-            } size="sm" className="rounded-full">
+            <Button
+              onClick={() => handleCategoryClick(category)}
+              key={category.id}
+              variant={getCategoryButtonVariant(category)}
+              size="sm"
+              className="rounded-full"
+            >
               {category.name}
             </Button>
           ))}
         </div>
         <Scrollbar orientation="horizontal" />
       </ScrollArea>
-          <h3 className=" px-5 font-semibold pt-2">{selectedCategory.name}</h3>
+      <h3 className="px-5 pt-2 font-semibold">{selectedCategory.name}</h3>
       <Products products={selectedCategory.products} />
-
     </div>
   );
 };

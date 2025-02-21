@@ -5,40 +5,42 @@ import { useParams } from "next/navigation";
 
 import { formatCurrency } from "@/app/helpers/format-currency";
 
-interface ProductsProps { 
-  products: Product[]; 
+interface ProductsProps {
+  products: Product[];
 }
 
-const Products = ({products}: ProductsProps) => {
-  const { slug } = useParams <{ slug: string}>()
+const Products = ({ products }: ProductsProps) => {
+  const { slug } = useParams<{ slug: string }>();
   return (
-    <div className="space-y-3 px-5 ">
-      {products.map((product ) => (
-            <Link key={product.id} 
-            href={`/${slug}/menu/${product.id}`}  
-            className=" flex items-center justify-between gap-10 py-5 border-b">
-              {/* Esquerda */}
-              <div>
-                <h3 className="text-sm front-medium">
-                  {product.name}
-                </h3>
-                <p className="line-clamp-2 text-sm text-muted-foreground">{product.description}</p>
-                <p className="pt-3 text-sm font-semibold">
-                 {formatCurrency(product.price)}
-                
-                </p>
-              </div>
-              {/* Direita */}
-              <div className="relative min-h-[82px] min-w-[120px]">
-                <Image src={product.imageUrl} 
-                alt={product.name} 
-                fill
-                className="rounded-lg object-contain" />
-
-              </div>
-          </Link>
+    <div className="space-y-3 px-5">
+      {products.map((product) => (
+        <Link
+          key={product.id}
+          href={`/${slug}/menu/${product.id}`}
+          className="flex items-center justify-between gap-10 border-b py-5"
+        >
+          {/* Esquerda */}
+          <div>
+            <h3 className="front-medium text-sm">{product.name}</h3>
+            <p className="line-clamp-2 text-sm text-muted-foreground">
+              {product.description}
+            </p>
+            <p className="pt-3 text-sm font-semibold">
+              {formatCurrency(product.price)}
+            </p>
+          </div>
+          {/* Direita */}
+          <div className="relative min-h-[82px] min-w-[120px]">
+            <Image
+              src={product.imageUrl}
+              alt={product.name}
+              fill
+              className="rounded-lg object-contain"
+            />
+          </div>
+        </Link>
       ))}
     </div>
   );
-}
-export default Products ;
+};
+export default Products;
