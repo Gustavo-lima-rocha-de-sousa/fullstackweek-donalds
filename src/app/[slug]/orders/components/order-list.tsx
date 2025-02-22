@@ -7,8 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
-import Products from "../../menu/components/products";
-
 interface OrdersListProps {
   orders: Array<
     Prisma.OrderGetPayload<{
