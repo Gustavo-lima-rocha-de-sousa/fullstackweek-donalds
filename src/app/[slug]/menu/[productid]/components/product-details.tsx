@@ -90,7 +90,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
             </div>
           </div>
 
-          <ScrollArea className="h-full">
+          <ScrollArea className="h-full pb-12">
             {/* Description */}
             <div className="mt-6 space-y-3">
               <h4 className="font-semibold">Sobre</h4>
@@ -105,7 +105,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                 <ChefHatIcon size={18} />
                 <h4 className="font-semibold">Ingredientes</h4>
               </div>
-              <ul className="list-disc px-5 text-muted-foreground">
+              <ul className="list-disc px-5 pb-12 text-muted-foreground">
                 {product.ingredients.map((ingredient) => (
                   <li key={ingredient}>{ingredient}</li>
                 ))}
